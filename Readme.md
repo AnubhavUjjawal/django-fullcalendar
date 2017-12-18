@@ -1,6 +1,6 @@
-#Django-FullCalendar Integration
-####Requirements: Django>=2.0
-###USAGE::
+# Django-FullCalendar Integration
+#### Requirements: Django>=2.0
+### USAGE::
 >Go to path/calendar/ to add a schedule.
 >Go to path/calendar/view/ to view the calendar.
 
