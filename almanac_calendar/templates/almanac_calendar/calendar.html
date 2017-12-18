@@ -1,0 +1,85 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Calendar</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.7.0/fullcalendar.min.css"/>
+    <link rel="stylesheet" media="print" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.7.0/fullcalendar.print.css"/>
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <style>
+        
+            body {
+                margin: 0;
+                padding: 0;
+                font-size: 14px;
+            }
+        
+            #top,
+            #calendar.fc-unthemed {
+                font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
+            }
+        
+            #top {
+                background: #eee;
+                border-bottom: 1px solid #ddd;
+                padding: 0 10px;
+                line-height: 40px;
+                font-size: 12px;
+                color: #000;
+            }
+        
+            #top .selector {
+                display: inline-block;
+                margin-right: 10px;
+            }
+        
+            #top select {
+                font: inherit; /* mock what Boostrap does, don't compete  */
+            }
+        
+            .left { float: left }
+            .right { float: right }
+            .clear { clear: both }
+        
+            #calendar {
+                max-width: 900px;
+                margin: 40px auto;
+                padding: 0 10px;
+            }
+        
+        </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="{% static 'almanac_calendar/moment.min.js' %}"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.7.0/fullcalendar.min.js"></script>    
+    
+</head>
+<body>
+    <div id='calendar' style="height:550px;width:550px;"></div>   
+   <div id="data" hidden>{{events}}</div>
+   <script>
+            var events = eval($('#data').text());
+            console.log(events);
+            $(document).ready(function() {
+                        $('#calendar').fullCalendar({
+                            header: {
+                                left:   'title',
+                                center: '',
+                                right:  'today prev,next'
+                            },
+                            themeSystem: 'bootstrap3',
+                            weekNumbers: true,
+                            navLinks: true, // can click day/week names to navigate views
+                            editable: false,
+                            eventLimit: false, // allow "more" link when too many events
+                            events: events
+                            
+                        });
+            });
+        
+    </script> 
+</body>
+
+</html>
